@@ -16,7 +16,6 @@ namespace PilhaDinamica
             this.Titulo = titulo;
             this.Anterior = null;
         }
-
         public void SetAnterior(Livro livro)
         {
             Anterior = livro;
@@ -24,6 +23,10 @@ namespace PilhaDinamica
         public Livro GetAnterior()
         {
             return Anterior;
+        }
+        public string GetTitulo()
+        {
+            return Titulo;
         }
         public override string? ToString()
         {

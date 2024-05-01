@@ -16,7 +16,7 @@ namespace PilhaDinamica
         }
         public void Push(Livro aux)
         {
-            if (Vazia() == true)
+            if (Vazia())
                 Topo = aux;
             else
             {
@@ -24,23 +24,25 @@ namespace PilhaDinamica
                 Topo = aux;
             }
         }
-        Boolean Vazia()
+        bool Vazia()
         {
             if (Topo == null)
                 return true;
             else
                 return false;
         }
+        public void InformarListaVazia()
+        {
+            Console.WriteLine("\nPilha vazia!");
+            Console.WriteLine("Pressione qualquer tecla para continuar...\n\n");
+            Console.ReadKey();
+        }
         public void Print()
         {
             Livro aux = Topo;
 
             if (Vazia())
-            {
-                Console.WriteLine("\nPilha vazia!");
-                Console.WriteLine("Pressione qualquer tecla para continuuar...\n\n");
-                Console.ReadKey();
-            }
+                InformarListaVazia();
             else
             {
                 do
@@ -56,13 +58,28 @@ namespace PilhaDinamica
         public void Pop()
         {
             if (Vazia())
-            {
-                Console.WriteLine("\nPilha vazia! Impossivel remover!");
-                Console.WriteLine("Pressione qualquer tecla para continuuar...\n\n");
-                Console.ReadKey();
-            }
+                InformarListaVazia();
             else
                 Topo = Topo.GetAnterior();
+        }
+        public void BuscarLivro(string titulo)
+        {
+            if (Vazia())
+                InformarListaVazia();
+            else
+            {
+                Livro aux = Topo;
+                while (titulo != aux.GetTitulo() && aux.GetAnterior() != null)
+                {
+                    aux = aux.GetAnterior();
+                }
+                if (aux.GetTitulo() == titulo)
+                    Console.WriteLine($"O livro {aux.GetTitulo()} existe na pilha!");
+                else
+                    Console.WriteLine("O livro não existe na pilha!");
+
+                Console.ReadKey();
+            }
         }
     }
 }
